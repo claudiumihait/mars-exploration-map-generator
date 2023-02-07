@@ -1,7 +1,8 @@
 package com.codecool.marsexploration.shape;
 
 import com.codecool.marsexploration.data.Coordinate;
-import com.codecool.marsexploration.map.MapGenerator;
+
+import java.util.List;
 
 public abstract class Shape {
 
@@ -18,21 +19,21 @@ public abstract class Shape {
     //naming them only private, and not private final??? -> the child classes won't be able to access them directly,
     // which may affect the implementation of the isOverlapping method.
 
-    protected Coordinate topLeft;
+    protected List<Coordinate> coordinates;
     protected int area;
 
     protected char[][] map;
     protected char symbol;
 
-    public Shape(Coordinate topLeft, int area, char[][] map /* TODO - need the map???*/, char symbol){
-        this.topLeft = topLeft;
+    public Shape(List<Coordinate> coordinates, int area, char[][] map /* TODO - need the map???*/, char symbol){
+        this.coordinates = coordinates;
         this.area = area;
         this.map = map;
         this.symbol = symbol;
     }
 
-    public Coordinate getTopLeft() {
-        return topLeft;
+    public List<Coordinate> getCoordinates() {
+        return coordinates;
     }
 
     public int getArea() {
@@ -46,4 +47,5 @@ public abstract class Shape {
     public char getSymbol(){return symbol;}
 
     public abstract boolean isOverlapping(Shape shape);
+    //TODO this method should check if Coords or shape are at least 1 pixel away from other shapes.
 }
