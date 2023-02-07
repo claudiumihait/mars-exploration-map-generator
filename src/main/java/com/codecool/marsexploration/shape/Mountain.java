@@ -1,12 +1,13 @@
 package com.codecool.marsexploration.shape;
 
 import com.codecool.marsexploration.data.Coordinate;
-import com.codecool.marsexploration.map.MapGenerator;
+
+import java.util.List;
 
 public class Mountain extends Shape{
 
-    public Mountain(Coordinate topLeft, int area, char[][] map) {
-        super(topLeft, area, map, '^');
+    public Mountain(List<Coordinate> coordinates, int area, char[][] map) {
+        super(coordinates, area, map, '^');
     }
 
     @Override
