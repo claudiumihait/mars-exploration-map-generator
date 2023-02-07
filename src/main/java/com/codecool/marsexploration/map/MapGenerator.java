@@ -17,8 +17,8 @@ public class MapGenerator {
         this.config = config;
     }
 
-    public char[][] generate(){
-        char[][] map = new char[config.getWidth()][config.getWidth()];
+    public void generate(){
+        Character[][] map = new Character[config.getWidth()][config.getWidth()];
         //generates a random map based on config and saves file
         if(config.isConfigValid()){
             addResources(config.getWaters(), config.getMinerals(), map);
@@ -36,7 +36,7 @@ public class MapGenerator {
         return null;
      }
 
-    private void setShapeOnMap(List<Mountain> mountains, List<Pit> pits, char[][] map) {
+    private void placeShapes(List<Mountain> mountains, List<Pit> pits, Character[][] map) {
         if (mountains == null){
             for (Pit pit : pits) {
                 for (Coordinate c : pit.getCoordinates()) {
@@ -56,7 +56,7 @@ public class MapGenerator {
         }
     }
 
-    private void addResources(List<Water> waters, List<Mineral> minerals, char[][] map) {
+    private void addResources(List<Water> waters, List<Mineral> minerals, Character[][] map) {
         for(Mineral mineral : minerals){
             int x = mineral.getLocation().x();
             int y = mineral.getLocation().y();
