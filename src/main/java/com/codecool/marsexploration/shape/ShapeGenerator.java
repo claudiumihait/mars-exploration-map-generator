@@ -1,12 +1,16 @@
 package com.codecool.marsexploration.shape;
 
-import java.util.List;
+import com.codecool.marsexploration.data.Coordinate;
+
+import java.util.*;
 
 public abstract class ShapeGenerator {
 
+    protected List<Coordinate> coordinates;
     protected int area;
 
-    public ShapeGenerator(int area) {
+    public ShapeGenerator(List<Coordinate> coordinates,int area) {
+        this.coordinates = coordinates;
         this.area = area;
     }
 
@@ -14,9 +18,34 @@ public abstract class ShapeGenerator {
         return area;
     }
 
-    public abstract List<Shape> generate();
-        //generates a shape(mountain/pit) with specified area(pixels)
-        //returns a list of possible shapes (eg. if area is 20, possible shapes are 5/4, 4/5 10/2, 2/10);
-        // TODO
+    public abstract Shape generate();
 
+    protected List<Coordinate> generateCoordinates(){
+        Set<Coordinate> coordinatesSet = new HashSet<>();
+        Random random = new Random();
+
+        int x = 0;
+        int y = 0;
+        for(int i = 0; i < area; i++){
+
+            int dx = random.nextInt(3) - 1;
+            int dy = random.nextInt(3) - 1;
+
+            while((x + dx == x && y + dy == y) || (x + dx < 0 || y + dy < 0)){
+                dx = random.nextInt(3) - 1;
+                dy = random.nextInt(3) - 1;
+            }
+
+            x+=dx;
+            y+=dy;
+
+            Coordinate coordinate = new Coordinate(x,y);
+            if(coordinatesSet.contains(coordinate)){
+                i--;
+                continue;
+            }
+            coordinatesSet.add(coordinate);
+        }
+        return new ArrayList<>(coordinatesSet);
+    }
 }

@@ -1,17 +1,18 @@
 package com.codecool.marsexploration.shape;
 
+import com.codecool.marsexploration.data.Coordinate;
+
 import java.util.List;
 
 public class MountainGenerator extends ShapeGenerator{
 
-    // TODO - fields should be area and map???? Then return coordinate?
-    public MountainGenerator(int area) {
-        super(area);
+    public MountainGenerator(List<Coordinate> coordinates, int area) {
+        super(coordinates,area);
     }
 
     @Override
-    public List<Shape> generate() {
-        //TODO - should this return a topLeft Coordinate only??
-        return null;
+    public Shape generate() {
+        List<Coordinate> coordinates = generateCoordinates();
+        return new Mountain(coordinates);
     }
 }

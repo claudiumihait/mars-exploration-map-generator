@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Mountain extends Shape{
 
-    public Mountain(List<Coordinate> coordinates, int area, char[][] map) {
-        super(coordinates, area, map, '^');
+    public Mountain(List<Coordinate> coordinates) {
+        super(coordinates, '^');
     }
 
     @Override
