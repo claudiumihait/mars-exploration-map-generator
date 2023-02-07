@@ -20,28 +20,15 @@ public abstract class Shape {
     // which may affect the implementation of the isOverlapping method.
 
     protected List<Coordinate> coordinates;
-    protected int area;
-
-    protected char[][] map;
     protected char symbol;
 
-    public Shape(List<Coordinate> coordinates, int area, char[][] map /* TODO - need the map???*/, char symbol){
+    public Shape(List<Coordinate> coordinates, char symbol){
         this.coordinates = coordinates;
-        this.area = area;
-        this.map = map;
         this.symbol = symbol;
     }
 
     public List<Coordinate> getCoordinates() {
         return coordinates;
-    }
-
-    public int getArea() {
-        return area;
-    }
-
-    public char[][] getMap() {
-        return map;
     }
 
     public char getSymbol(){return symbol;}

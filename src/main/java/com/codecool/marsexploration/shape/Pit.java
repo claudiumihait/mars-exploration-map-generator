@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Pit extends Shape{
 
-    public Pit(List<Coordinate> coordinates, int area, char[][] map) {
-        super(coordinates, area, map,'*');
+    public Pit(List<Coordinate> coordinates) {
+        super(coordinates,'*');
     }
 
     @Override
