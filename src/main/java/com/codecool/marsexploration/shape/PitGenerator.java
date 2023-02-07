@@ -1,17 +1,20 @@
 package com.codecool.marsexploration.shape;
 
+import com.codecool.marsexploration.data.Coordinate;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PitGenerator extends ShapeGenerator {
 
-    // TODO - fields should be area and map???? Then return coordinate?
-    public PitGenerator(int area) {
-        super(area);
+    public PitGenerator(List<Coordinate> coordinates, int area) {
+        super(coordinates, area);
     }
 
     @Override
-    public List<Shape> generate() {
-        // TODO - should this return a topLeft Coordinate only??
-        return null;
+    public Shape generate() {
+        List<Coordinate> coordinates = generateCoordinates();
+        return new Pit(coordinates);
     }
 }
