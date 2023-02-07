@@ -7,5 +7,5 @@ import java.util.List;
 public abstract class ShapePlacer {
 
     // TODO - need map here ??
-    public abstract void placeShapes(List<Shape> shapes, char[][] map);
+    public abstract void placeShapes(List<Shape> shapes, Character[][] map);
 }

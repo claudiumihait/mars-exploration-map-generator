@@ -7,7 +7,7 @@ import java.util.List;
 public class MountainPlacer extends ShapePlacer{
     // TODO - need map here ??
     @Override
-    public void placeShapes(List<Shape> shapes, char[][] map) {
+    public void placeShapes(List<Shape> shapes, Character[][] map) {
         //TODO
     }
 }

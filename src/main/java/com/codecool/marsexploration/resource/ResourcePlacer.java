@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ResourcePlacer {
 
-    public void placeResources(List<Resource> resources, char[][] map){
+    public void placeResources(List<Resource> resources, Character[][] map){
         for(Resource resource : resources){
             // TODO - add resource to map
         }
