@@ -2,14 +2,19 @@ package com.codecool.marsexploration.resource;
 
 import com.codecool.marsexploration.data.Coordinate;
 
-abstract class Resource {
+public abstract class Resource {
 
     protected char symbol;
+    private char preference;
     protected Coordinate location;
 
-    public Resource(char symbol, Coordinate location) {
+    public char getPreference() {
+        return preference;
+    }
+
+    public Resource(char symbol, char preference) {
         this.symbol = symbol;
-        this.location = location;
+        this.preference = preference;
     }
 
     public char getSymbol() {
@@ -18,5 +23,9 @@ abstract class Resource {
 
     public Coordinate getLocation() {
         return location;
+    }
+
+    public void setCoordinate(int x, int y){
+        this.location = new Coordinate(x, y);
     }
 }
