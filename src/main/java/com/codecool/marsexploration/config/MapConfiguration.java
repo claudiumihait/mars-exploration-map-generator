@@ -15,7 +15,8 @@ public class MapConfiguration {
     private final List<Resource> waters;
     private final List<Resource> minerals;
     private final boolean isConfigValid;
-
+//TODO-mapConfiguration(conform JOURNEY) trebuie sa ia ca paramentru (din input) cati munti/vai/ape/minerale sa aiba
+    //TODO-Try to include these strategies into the configuration object as well.(PROCENT OCUPARE)
     public MapConfiguration(String fileName, int width, List<List<Mountain>> mountainAreas, List<List<Pit>> pitAreas, List<Resource> waters, List<Resource> minerals) {
         this.fileName = fileName;
         this.width = width;

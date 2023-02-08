@@ -38,6 +38,7 @@ public class MapGenerator {
                 pitPlacer.placeShapes(pitArea, map);
 
             resourcePlacer.placeResources(config.getMinerals(), map);
+            resourcePlacer.placeResources(config.getWaters(), map);
 
 
             writer.saveFile(config.getFileName(), map);
