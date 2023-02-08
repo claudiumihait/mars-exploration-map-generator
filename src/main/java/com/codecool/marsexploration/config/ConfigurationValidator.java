@@ -1,13 +1,13 @@
 package com.codecool.marsexploration.config;
 
 import com.codecool.marsexploration.data.Coordinate;
-import com.codecool.marsexploration.resource.Mineral;
-import com.codecool.marsexploration.resource.Water;
+import com.codecool.marsexploration.resource.Resource;
 import com.codecool.marsexploration.shape.Mountain;
 import com.codecool.marsexploration.shape.Pit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ConfigurationValidator {
 
@@ -41,11 +41,11 @@ public class ConfigurationValidator {
     private boolean checkShapesCoordinatesNotOverlapping(){
         List<Coordinate> takenSpots = new ArrayList<>();
 
-        for(Water water : config.getWaters()){
+        for(Resource water : config.getWaters()){
             takenSpots.add(water.getLocation());
         }
 
-        for(Mineral mineral : config.getMinerals()){
+        for(Resource mineral : config.getMinerals()){
             takenSpots.add(mineral.getLocation());
         }
 
@@ -60,16 +60,8 @@ public class ConfigurationValidator {
                 takenSpots.addAll(mountain.getCoordinates());
             }
         }
-//        for (int i = 0; i < takenSpots.size(); i++) {
-//            for (int j = i + 1; j < takenSpots.size(); j++) {
-//                if (takenSpots.get(i).x == takenSpots.get(j).x && takenSpots.get(i).y == takenSpots.get(j).y) {
-//                    areCoordsOverlapping = true;
-//                    return areCoordsOverlapping;
-//                }
-//            }
-//        }
-        return takenSpots.stream()
-                .noneMatch(c1 -> takenSpots.stream().anyMatch(c2 -> c1 != c2 && c1.x() == c2.x() && c1.y() == c2.y()));
+        return takenSpots.stream().filter(Objects::nonNull)
+                .noneMatch(c1 -> takenSpots.stream().filter(Objects::nonNull).anyMatch(c2 -> c1 != c2 && c1.x() == c2.x() && c1.y() == c2.y()));
     }
 
     private boolean checkFileName(){

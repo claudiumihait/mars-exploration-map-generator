@@ -8,12 +8,11 @@ import java.util.Random;
 
 public class PitGenerator extends ShapeGenerator {
 
-    public PitGenerator(List<Coordinate> coordinates, int area) {
-        super(coordinates, area);
+    public PitGenerator(int area) {
+        super(area);
     }
 
-    @Override
-    public Shape generate() {
+    public Pit generate() {
         List<Coordinate> coordinates = generateCoordinates();
         return new Pit(coordinates);
     }

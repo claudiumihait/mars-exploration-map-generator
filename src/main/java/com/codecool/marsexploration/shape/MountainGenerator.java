@@ -6,12 +6,11 @@ import java.util.List;
 
 public class MountainGenerator extends ShapeGenerator{
 
-    public MountainGenerator(List<Coordinate> coordinates, int area) {
-        super(coordinates,area);
+    public MountainGenerator(int area) {
+        super(area);
     }
 
-    @Override
-    public Shape generate() {
+    public Mountain generate() {
         List<Coordinate> coordinates = generateCoordinates();
         return new Mountain(coordinates);
     }

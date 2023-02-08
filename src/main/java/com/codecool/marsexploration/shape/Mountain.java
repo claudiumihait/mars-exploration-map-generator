@@ -11,11 +11,14 @@ public class Mountain extends Shape{
     }
 
     @Override
-    public boolean isOverlapping(Shape shape) {
-        // Implementation of the logic to check if this mountain shape is overlapping with another shape
-        // This logic could be based on checking the coordinates and/or areas of the two shapes
-        // and determining if they intersect in any way
-        // TODO
+    public boolean isOverlapping(Character[][] map, int offsetX, int offsetY) {
+        for (Coordinate c : coordinates) {
+            int x = c.x() + offsetX;
+            int y = c.y() + offsetY;
+            if (x >= map.length || y >= map[0].length || map[x][y] != null && map[x][y] != ' ') {
+                return true;
+            }
+        }
         return false;
     }
 }

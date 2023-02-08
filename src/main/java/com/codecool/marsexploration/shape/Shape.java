@@ -33,6 +33,21 @@ public abstract class Shape {
 
     public char getSymbol(){return symbol;}
 
-    public abstract boolean isOverlapping(Shape shape);
-    //TODO this method should check if Coords or shape are at least 1 pixel away from other shapes.
+    public abstract boolean isOverlapping(Character[][] map, int offsetX, int offsetY);
+
+    protected int getMaxX() {
+        int maxX = Integer.MIN_VALUE;
+        for (Coordinate c : coordinates){
+            if (c.x() > maxX) maxX = c.x();
+        }
+        return maxX;
+    }
+
+    protected int getMaxY() {
+        int maxY = Integer.MIN_VALUE;
+        for (Coordinate c : coordinates){
+            if (c.y() > maxY) maxY = c.y();
+        }
+        return maxY;
+    }
 }

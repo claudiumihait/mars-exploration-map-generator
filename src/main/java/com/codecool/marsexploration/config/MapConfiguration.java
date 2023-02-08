@@ -1,7 +1,6 @@
 package com.codecool.marsexploration.config;
 
-import com.codecool.marsexploration.resource.Mineral;
-import com.codecool.marsexploration.resource.Water;
+import com.codecool.marsexploration.resource.Resource;
 import com.codecool.marsexploration.shape.Mountain;
 import com.codecool.marsexploration.shape.Pit;
 
@@ -13,11 +12,11 @@ public class MapConfiguration {
     private final int width;
     private final List<List<Mountain>> mountainAreas;
     private final List<List<Pit>> pitAreas;
-    private final List<Water> waters;
-    private final List<Mineral> minerals;
+    private final List<Resource> waters;
+    private final List<Resource> minerals;
     private final boolean isConfigValid;
 
-    public MapConfiguration(String fileName, int width, List<List<Mountain>> mountainAreas, List<List<Pit>> pitAreas, List<Water> waters, List<Mineral> minerals) {
+    public MapConfiguration(String fileName, int width, List<List<Mountain>> mountainAreas, List<List<Pit>> pitAreas, List<Resource> waters, List<Resource> minerals) {
         this.fileName = fileName;
         this.width = width;
         this.mountainAreas = mountainAreas;
@@ -48,11 +47,11 @@ public class MapConfiguration {
         return pitAreas;
     }
 
-    public List<Water> getWaters() {
+    public List<Resource> getWaters() {
         return waters;
     }
 
-    public List<Mineral> getMinerals() {
+    public List<Resource> getMinerals() {
         return minerals;
     }
 
