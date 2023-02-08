@@ -10,7 +10,6 @@ public class FileSaver {
     public void saveFile(String fileName, Character[][] map){
         String content = processMap(map);
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH + fileName + ".map"))){
-            //TODO - content can't be written
             bw.write(content);
         }catch(IOException e){
             System.out.println("An error occurred while trying to write the file.\n Error message: " + e.getMessage());
