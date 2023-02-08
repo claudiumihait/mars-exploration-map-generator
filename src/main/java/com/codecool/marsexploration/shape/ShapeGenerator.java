@@ -6,11 +6,9 @@ import java.util.*;
 
 public abstract class ShapeGenerator {
 
-    protected List<Coordinate> coordinates;
     protected int area;
 
-    public ShapeGenerator(List<Coordinate> coordinates,int area) {
-        this.coordinates = coordinates;
+    public ShapeGenerator(int area) {
         this.area = area;
     }
 
@@ -18,7 +16,7 @@ public abstract class ShapeGenerator {
         return area;
     }
 
-    public abstract Shape generate();
+    //public abstract Shape generate();
 
     protected List<Coordinate> generateCoordinates(){
         Set<Coordinate> coordinatesSet = new HashSet<>();
