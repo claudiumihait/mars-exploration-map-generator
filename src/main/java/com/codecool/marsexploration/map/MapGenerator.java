@@ -3,9 +3,9 @@ package com.codecool.marsexploration.map;
 import com.codecool.marsexploration.config.MapConfiguration;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.resource.Mineral;
+import com.codecool.marsexploration.resource.ResourcePlacer;
 import com.codecool.marsexploration.resource.Water;
-import com.codecool.marsexploration.shape.Mountain;
-import com.codecool.marsexploration.shape.Pit;
+import com.codecool.marsexploration.shape.*;
 import com.codecool.marsexploration.utils.FileSaver;
 
 import java.util.List;
@@ -14,36 +14,38 @@ public class MapGenerator {
 
     private final MapConfiguration config;
     private final FileSaver writer;
+    private final MountainPlacer mountainPlacer;
+    private final PitPlacer pitPlacer;
+    private final ResourcePlacer resourcePlacer;
 
-    public MapGenerator(MapConfiguration config, FileSaver writer) {
+    public MapGenerator(MapConfiguration config, FileSaver writer, MountainPlacer mountainPlacer, PitPlacer pitPlacer, ResourcePlacer resourcePlacer) {
         this.config = config;
         this.writer = writer;
+        this.mountainPlacer = mountainPlacer;
+        this.pitPlacer = pitPlacer;
+        this.resourcePlacer = resourcePlacer;
     }
 
     public void generate(){
         Character[][] map = new Character[config.getWidth()][config.getWidth()];
-        //generates a random map based on config and saves file
-        if(config.isConfigValid()){
-            addResources(config.getWaters(), config.getMinerals(), map);
+        handleNullSpots(map);
 
-            for(List<Mountain> mountainAreas : config.getMountainAreas())
-                placeShapes(mountainAreas, null, map);
+        if(config.isConfigValid()){
+            for(List<Mountain> mountainArea : config.getMountainAreas())
+                mountainPlacer.placeShapes(mountainArea, map);
 
             for (List<Pit> pitArea : config.getPitAreas())
-                placeShapes(null, pitArea, map);
+                pitPlacer.placeShapes(pitArea, map);
 
-            handleNullSpots(map);
+            resourcePlacer.placeResources(config.getMinerals(), map);
+
 
             writer.saveFile(config.getFileName(), map);
         } else {
             System.out.println("Provided config can not generate a valid map");
-            //TODO - handle not valid config
+            System.exit(0);
         }
-     }
-
-     private void saveFile(Character[][] map){
-        writer.saveFile(config.getFileName(), map);
-     }
+    }
 
     private void placeShapes(List<Mountain> mountains, List<Pit> pits, Character[][] map) {
         if (mountains == null){
