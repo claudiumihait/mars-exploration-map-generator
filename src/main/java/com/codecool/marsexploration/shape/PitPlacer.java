@@ -1,15 +1,11 @@
 package com.codecool.marsexploration.shape;
 
-import com.codecool.marsexploration.map.MapGenerator;
-
 import java.util.List;
 
 public class PitPlacer extends ShapePlacer{
 
-    //TODO - need map here ??
-
-    @Override
-    public void placeShapes(List<Shape> shapes, Character[][] map) {
-        //TODO
+    public void placeShapes(List<Pit> shapes, Character[][] map) {
+        for (Shape shape : shapes)
+            placeShape(shape, map);
     }
 }
