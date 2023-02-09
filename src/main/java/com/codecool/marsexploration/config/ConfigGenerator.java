@@ -16,6 +16,7 @@ public class ConfigGenerator {
     private final Input input;
     private String fileName;
     private int width;
+    private int numberOfRandomMaps;
     private List<Shape> shapeList;
     private List<Resource> resourceList;
 
@@ -50,6 +51,8 @@ public class ConfigGenerator {
         for (int i = 0; i < numberOfWaterResources; i++) {
             this.resourceList.add(new Water());
         }
+
+        this.numberOfRandomMaps = input.getNumericUserInput("How many random maps you want to generate with configuration?");
     }
 
     public List<Shape> getShapeList() {
@@ -67,4 +70,6 @@ public class ConfigGenerator {
     public int getWidth() {
         return width;
     }
+
+    public int getNumberOfRandomMaps() { return numberOfRandomMaps; }
 }

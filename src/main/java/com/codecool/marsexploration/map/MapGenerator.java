@@ -19,14 +19,21 @@ public class MapGenerator {
     public void generate(){
         Character[][] map = new Character[config.getWidth()][config.getWidth()];
         handleNullSpots(map);
-        ShapePlacer shapePlacer = new ShapePlacer();
-        ResourcePlacer resourcePlacer = new ResourcePlacer();
         Display display = new Display();
         if(config.isConfigValid()){
-            shapePlacer.placeShapes(config.getShapes(), map);
-            resourcePlacer.placeResources(config.getResources(), map);
-            display.displayGenerated(config, map);
-            writer.saveFile(config.getFileName(), map);
+            int numberOfRandomMaps = config.getNumberOfRandomMaps();
+            while(numberOfRandomMaps > 0){
+                ShapePlacer shapePlacer = new ShapePlacer();
+                ResourcePlacer resourcePlacer = new ResourcePlacer();
+                shapePlacer.placeShapes(config.getShapes(), map);
+                resourcePlacer.placeResources(config.getResources(), map);
+                display.displayGenerated(config, map);
+                writer.saveFile(config.getFileName(), map);
+                map = new Character[config.getWidth()][config.getWidth()];
+                handleNullSpots(map);
+                numberOfRandomMaps--;
+                //config.getNumberOfRandomMaps()--;
+            }
         } else {
             display.errorMessage("Provided config can not generate a valid map");
             System.exit(0);

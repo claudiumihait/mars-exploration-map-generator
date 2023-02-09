@@ -16,14 +16,15 @@ public class ShapePlacer {
         int offsetX = rand.nextInt(map.length - shape.getMaxX());
         int offsetY = rand.nextInt(map.length - shape.getMaxY());
         int retries = 0;
+        System.out.println(retries);
         while(offsetX + shape.getMaxX() > map.length || offsetY + shape.getMaxY() > map.length || shape.isAdjacentToExistingShape(map, offsetX, offsetY)){
             retries++;
-            if(retries == 1000){
+            if(retries == 10000){
                 if (shape instanceof Mountain){
-                    display.errorMessage("Failed to place mountain shape number -" + areasIndexes[0] + "- of size -" + shape.getCoordinates().size() + "- after 1000 attempts. Maximum number of retries reached.");
+                    display.errorMessage("Failed to place mountain shape number -" + areasIndexes[0] + "- of size -" + shape.getCoordinates().size() + "- after 10000 attempts. Maximum number of retries reached.");
                     System.exit(0);
                 }else{
-                    display.errorMessage("Failed to place pit shape number -" + areasIndexes[1] + "- of size -" + shape.getCoordinates().size() + "- after 1000 attempts. Maximum number of retries reached.");
+                    display.errorMessage("Failed to place pit shape number -" + areasIndexes[1] + "- of size -" + shape.getCoordinates().size() + "- after 10000 attempts. Maximum number of retries reached.");
                     System.exit(0);
                 }
             }

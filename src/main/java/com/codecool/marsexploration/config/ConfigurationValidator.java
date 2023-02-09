@@ -18,8 +18,8 @@ public class ConfigurationValidator {
     private final MapConfiguration config;
 
     public ConfigurationValidator(MapConfiguration config, Display display) {
-        this.display = display;
         this.config = config;
+        this.display = display;
     }
 
     public boolean validate(){

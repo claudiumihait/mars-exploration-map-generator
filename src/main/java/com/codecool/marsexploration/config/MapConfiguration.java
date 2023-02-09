@@ -16,13 +16,15 @@ public class MapConfiguration {
     private final int width;
     private final List<Resource> resourceList;
     private final List<Shape> shapeList;
+    private int numberOfRandomMaps;
     private final boolean isConfigValid;
 
-    public MapConfiguration(String fileName, int width, List<Shape> shapeList,List<Resource> resourceList) {
+    public MapConfiguration(String fileName, int width, List<Shape> shapeList,List<Resource> resourceList, int numberOfRandomMaps) {
         this.fileName = fileName;
         this.width = width;
         this.shapeList = shapeList;
         this.resourceList = resourceList;
+        this.numberOfRandomMaps = numberOfRandomMaps;
         this.isConfigValid = validate();
     }
 
@@ -41,6 +43,7 @@ public class MapConfiguration {
     public int getWidth() {
         return width;
     }
+    public int getNumberOfRandomMaps() { return numberOfRandomMaps; }
 
     public boolean validate(){
         ConfigurationValidator validator = new ConfigurationValidator(this, new Display());

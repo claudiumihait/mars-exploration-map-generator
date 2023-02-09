@@ -6,10 +6,12 @@ import java.io.IOException;
 
 public class FileSaver {
     private final String FILE_PATH = "src/main/resources/";
+    public static int fileIndex = 1;
+
 
     public void saveFile(String fileName, Character[][] map){
         String content = processMap(map);
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH + fileName + ".map"))){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH + fileName + "-" + fileIndex++ + ".map"))){
             bw.write(content);
         }catch(IOException e){
             System.out.println("An error occurred while trying to write the file.\n Error message: " + e.getMessage());

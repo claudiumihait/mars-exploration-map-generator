@@ -14,7 +14,7 @@ public class Application {
         FileSaver writer = new FileSaver();
         ConfigGenerator configGenerator = new ConfigGenerator(input);
         configGenerator.init();
-        MapConfiguration config = new MapConfiguration(configGenerator.getFileName(), configGenerator.getWidth(), configGenerator.getShapeList(),configGenerator.getResourceList());
+        MapConfiguration config = new MapConfiguration(configGenerator.getFileName(), configGenerator.getWidth(), configGenerator.getShapeList(),configGenerator.getResourceList(), configGenerator.getNumberOfRandomMaps());
         MapGenerator generator = new MapGenerator(config, writer);
         generator.generate();
     }
