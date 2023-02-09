@@ -33,7 +33,28 @@ public abstract class Shape {
 
     public char getSymbol(){return symbol;}
 
-    public abstract boolean isOverlapping(Character[][] map, int offsetX, int offsetY);
+    protected boolean isAdjacentToExistingShape(Character[][] map, int offsetX, int offsetY) {
+        int[] dx = {-1, -1, -1, 0, 1, 1, 1, 0};
+        int[] dy = {-1, 0, 1, 1, 1, 0, -1, -1};
+
+        for (Coordinate c : coordinates) {
+            int x = c.x() + offsetX;
+            int y = c.y() + offsetY;
+            if (x >= map.length || y >= map[0].length || map[x][y] != null && map[x][y] != ' ') {
+                return true;
+            }
+
+            for(int i = 0; i < 8; i++){
+                int neighborX = x + dx[i];
+                int neighborY = y + dy[i];
+                if (neighborX >= 0 && neighborX < map.length && neighborY >= 0 && neighborY < map[0].length &&
+                        map[neighborX][neighborY] != null && map[neighborX][neighborY] != ' ') {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     protected int getMaxX() {
         int maxX = Integer.MIN_VALUE;
