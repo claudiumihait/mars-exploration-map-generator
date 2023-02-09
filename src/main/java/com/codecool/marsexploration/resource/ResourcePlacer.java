@@ -16,7 +16,7 @@ public class ResourcePlacer {
 
                 if(map[x][y] == resource.getPreference()){
 
-                    List<int[]> neighbors = getNeighbours(x,y,map);
+                    List<int[]> neighbors = getAvailableNeighbors(x,y,map);
 
                     if(!neighbors.isEmpty()){
                         int[] placedAt = neighbors.get(rand.nextInt(neighbors.size()));
@@ -29,7 +29,7 @@ public class ResourcePlacer {
         }
     }
 
-    private List<int[]> getNeighbours(int x, int y, Character[][] map) {
+    private List<int[]> getAvailableNeighbors(int x, int y, Character[][] map) {
         List<int[]> neighbors = new ArrayList<>();
 
         int[] dx = {-1, -1, -1, 0, 1, 1, 1, 0};
