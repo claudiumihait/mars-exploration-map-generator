@@ -44,14 +44,14 @@ public abstract class Shape {
                 return true;
             }
 
-//            for(int i = 0; i < 8; i++){
-//                int neighborX = x + dx[i];
-//                int neighborY = y + dy[i];
-//                if (neighborX >= 0 && neighborX < map.length && neighborY >= 0 && neighborY < map[0].length &&
-//                        map[neighborX][neighborY] != null && map[neighborX][neighborY] != ' ') {
-//                    return true;
-//                }
-//            }
+            for(int i = 0; i < 8; i++){
+                int neighborX = x + dx[i];
+                int neighborY = y + dy[i];
+                if (neighborX >= 0 && neighborX < map.length && neighborY >= 0 && neighborY < map[0].length &&
+                        map[neighborX][neighborY] != null && map[neighborX][neighborY] != ' ') {
+                    return true;
+                }
+            }
         }
         return false;
     }

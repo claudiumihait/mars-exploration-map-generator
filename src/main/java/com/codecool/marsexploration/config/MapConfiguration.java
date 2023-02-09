@@ -16,7 +16,7 @@ public class MapConfiguration {
     private final int width;
     private final List<Resource> resourceList;
     private final List<Shape> shapeList;
-    private int numberOfRandomMaps;
+    private final int numberOfRandomMaps;
     private final boolean isConfigValid;
 
     public MapConfiguration(String fileName, int width, List<Shape> shapeList,List<Resource> resourceList, int numberOfRandomMaps) {

@@ -22,9 +22,10 @@ public class MapGenerator {
         Display display = new Display();
         if(config.isConfigValid()){
             int numberOfRandomMaps = config.getNumberOfRandomMaps();
+            ShapePlacer shapePlacer = new ShapePlacer();
+            ResourcePlacer resourcePlacer = new ResourcePlacer();
             while(numberOfRandomMaps > 0){
-                ShapePlacer shapePlacer = new ShapePlacer();
-                ResourcePlacer resourcePlacer = new ResourcePlacer();
+                display.shapes(config.getShapes());
                 shapePlacer.placeShapes(config.getShapes(), map);
                 resourcePlacer.placeResources(config.getResources(), map);
                 display.displayGenerated(config, map);

@@ -1,9 +1,12 @@
 package com.codecool.marsexploration.utils;
 
 import com.codecool.marsexploration.config.MapConfiguration;
+import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.shape.Mountain;
 import com.codecool.marsexploration.shape.Pit;
+import com.codecool.marsexploration.shape.Shape;
 
+import java.util.List;
 import java.util.Map;
 
 public class Display {
@@ -71,7 +74,7 @@ public class Display {
 
     private void displayPitAreas(MapConfiguration config){
         System.out.println();
-        message(ANSI_GREEN + "Pit areas: " + config.getShapesCount()[1] + ANSI_DEFAULT);
+        message(ANSI_GREEN + "Pit areas: " + ANSI_DEFAULT + ANSI_RED + config.getShapesCount()[1] + ANSI_DEFAULT);
         int areaNumber = 1;
         for(int i = 0 ; i < config.getShapes().size(); i++){
             if (config.getShapes().get(i) instanceof Pit){
@@ -86,7 +89,7 @@ public class Display {
         message(ANSI_GREEN + "Water resources: "  + ANSI_DEFAULT + ANSI_RED + config.getResourcesCount()[1] + ANSI_DEFAULT);
     }
 
-    private void displayMap(Character[][] map){
+    public void displayMap(Character[][] map){
         for(int i = -1; i <= map.length; i++){
             for(int j = -1; j <= map.length; j++){
                 if (i == -1 || i == map.length || j == -1 || j == map.length) {
@@ -103,5 +106,15 @@ public class Display {
         displayConfig(config);
         System.out.println();
         displayMap(map);
+    }
+
+    public void shapes(List<Shape> shapes) {
+        for(Shape shape : shapes){
+            message("-------------------------");
+            List<Coordinate> coordinates = shape.getCoordinates();
+            for(Coordinate c : coordinates)
+                System.out.println(c);
+
+        }
     }
 }
