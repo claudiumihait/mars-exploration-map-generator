@@ -6,6 +6,7 @@ import com.codecool.marsexploration.resource.Water;
 import com.codecool.marsexploration.shape.Mountain;
 import com.codecool.marsexploration.shape.Pit;
 import com.codecool.marsexploration.shape.Shape;
+import com.codecool.marsexploration.utils.Display;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class MapConfiguration {
     }
 
     public boolean validate(){
-        ConfigurationValidator validator = new ConfigurationValidator(this);
+        ConfigurationValidator validator = new ConfigurationValidator(this, new Display());
         return validator.validate();
     }
 
