@@ -81,8 +81,8 @@ public class Display {
 
     private void displayResourcesCount(MapConfiguration config){
         System.out.println();
-        message(ANSI_GREEN + "Waters count: " + ANSI_DEFAULT + ANSI_RED + config.getResourcesCount()[0] + ANSI_DEFAULT);
-        message(ANSI_GREEN + "Minerals areas: "  + ANSI_DEFAULT + ANSI_RED + config.getResourcesCount()[1] + ANSI_DEFAULT);
+        message(ANSI_GREEN + "Mineral resources: " + ANSI_DEFAULT + ANSI_RED + config.getResourcesCount()[0] + ANSI_DEFAULT);
+        message(ANSI_GREEN + "Water resources: "  + ANSI_DEFAULT + ANSI_RED + config.getResourcesCount()[1] + ANSI_DEFAULT);
     }
 
     private void displayMap(Character[][] map){
