@@ -6,10 +6,10 @@ import com.codecool.marsexploration.map.MapGenerator;
 import java.util.List;
 import java.util.Random;
 
-public abstract class ShapePlacer {
+public class ShapePlacer {
 
 
-    protected void placeShape(Shape shape, Character[][] map){
+    private void placeShape(Shape shape, Character[][] map){
         Random rand = new Random();
         List<Coordinate> coordinates = shape.getCoordinates();
         int offsetX = rand.nextInt(map.length - shape.getMaxX());
@@ -26,5 +26,9 @@ public abstract class ShapePlacer {
             coordinates.set(i, newC);
             map[newC.x()][newC.y()] = shape.getSymbol();
         }
+    }
+    public void placeShapes(List<Shape> shapes, Character[][] map) {
+        for(Shape shape : shapes)
+            placeShape(shape, map);
     }
 }

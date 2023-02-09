@@ -4,6 +4,8 @@ import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.resource.Resource;
 import com.codecool.marsexploration.shape.Mountain;
 import com.codecool.marsexploration.shape.Pit;
+import com.codecool.marsexploration.shape.Shape;
+import com.codecool.marsexploration.shape.ShapeGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +41,14 @@ public class ConfigurationValidator {
     }
 
     private boolean checkAreaCoveredByShapes(){
-        List<List<Pit>> pitAreas = config.getPitAreas();
-        List<List<Mountain>> mountainAreas = config.getMountainAreas();
+//        List<List<Pit>> pitAreas = config.getPitAreas();
+//        List<List<Mountain>> mountainAreas = config.getMountainAreas();
+        List<Shape> shapes = config.getShapes();
+        List<Resource> resources = config.getResources();
 
-        double totalCoveredArea = pitAreas.stream().mapToInt(List::size).sum() +
-                mountainAreas.stream().mapToInt(List::size).sum() +
-                config.getMinerals().size() +
-                config.getWaters().size();
+        double totalCoveredArea = shapes.stream().map(shape->shape.getCoordinates().size()).reduce(0,(a,b)->a+b) +
+                resources.size();
+        System.out.println("VERIFICARE!!!! "+ totalCoveredArea);
 
         double mapArea = config.getWidth() * config.getWidth();
         double maxAllowedCoveredArea = MAX_MAP_COVERAGE_PERCENTAGE * mapArea;
@@ -56,25 +59,29 @@ public class ConfigurationValidator {
     private boolean checkShapesCoordinatesNotOverlapping(){
         List<Coordinate> takenSpots = new ArrayList<>();
 
-        for(Resource water : config.getWaters()){
-            takenSpots.add(water.getLocation());
+        for(Shape shape : config.getShapes()){
+            takenSpots.addAll(shape.getCoordinates());
         }
 
-        for(Resource mineral : config.getMinerals()){
-            takenSpots.add(mineral.getLocation());
+        for(Resource resource : config.getResources()){
+            takenSpots.add(resource.getLocation());
         }
 
-        for(List<Pit> pitArea : config.getPitAreas()){
-            for (Pit pit : pitArea){
-                takenSpots.addAll(pit.getCoordinates());
-            }
-        }
+//        for(Resource mineral : config.getMinerals()){
+//            takenSpots.add(mineral.getLocation());
+//        }
 
-        for(List<Mountain> mountainArea : config.getMountainAreas()){
-            for(Mountain mountain : mountainArea){
-                takenSpots.addAll(mountain.getCoordinates());
-            }
-        }
+//        for(List<Pit> pitArea : config.getPitAreas()){
+//            for (Pit pit : pitArea){
+//                takenSpots.addAll(pit.getCoordinates());
+//            }
+//        }
+
+//        for(List<Mountain> mountainArea : config.getMountainAreas()){
+//            for(Mountain mountain : mountainArea){
+//                takenSpots.addAll(mountain.getCoordinates());
+//            }
+//        }
         System.out.println("VERIFICARE IN CONFIGURATION VALIDATOR");
         System.out.println("VERIFICARE LISTA TAKENSPOTS: ");
         for(Coordinate c:takenSpots){

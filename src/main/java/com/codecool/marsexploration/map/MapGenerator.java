@@ -14,31 +14,34 @@ public class MapGenerator {
 
     private final MapConfiguration config;
     private final FileSaver writer;
-    private final MountainPlacer mountainPlacer;
-    private final PitPlacer pitPlacer;
-    private final ResourcePlacer resourcePlacer;
+//    private final MountainPlacer mountainPlacer;
+//    private final PitPlacer pitPlacer;
+//    private final ResourcePlacer resourcePlacer;
 
-    public MapGenerator(MapConfiguration config, FileSaver writer, MountainPlacer mountainPlacer, PitPlacer pitPlacer, ResourcePlacer resourcePlacer) {
+    public MapGenerator(MapConfiguration config, FileSaver writer) {
         this.config = config;
         this.writer = writer;
-        this.mountainPlacer = mountainPlacer;
-        this.pitPlacer = pitPlacer;
-        this.resourcePlacer = resourcePlacer;
+//        this.mountainPlacer = mountainPlacer;
+//        this.pitPlacer = pitPlacer;
+//        this.resourcePlacer = resourcePlacer;
     }
 
     public void generate(){
         Character[][] map = new Character[config.getWidth()][config.getWidth()];
         handleNullSpots(map);
+        ShapePlacer shapePlacer = new ShapePlacer();
+        ResourcePlacer resourcePlacer = new ResourcePlacer();
 
         if(config.isConfigValid()){
-            for(List<Mountain> mountainArea : config.getMountainAreas())
-                mountainPlacer.placeShapes(mountainArea, map);
 
-            for (List<Pit> pitArea : config.getPitAreas())
-                pitPlacer.placeShapes(pitArea, map);
+//            for(Shape shape : config.getShapes())
+                shapePlacer.placeShapes(config.getShapes(), map);
 
-            resourcePlacer.placeResources(config.getMinerals(), map);
-            resourcePlacer.placeResources(config.getWaters(), map);
+//            for (List<Pit> pitArea : config.getPitAreas())
+//                pitPlacer.placeShapes(pitArea, map);
+
+            resourcePlacer.placeResources(config.getResources(), map);
+//            resourcePlacer.placeResources(config.getWaters(), map);
 
 
             writer.saveFile(config.getFileName(), map);
