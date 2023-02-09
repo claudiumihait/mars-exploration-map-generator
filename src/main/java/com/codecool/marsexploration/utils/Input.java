@@ -21,7 +21,8 @@ public class Input {
                 choice = scanner.nextInt();
             }
         }catch (InputMismatchException e){
-            display.errorMessage("Invalid input");
+            display.errorMessage("Invalid input. Please try again.");
+            return getNumericUserInput(s);
         }
         return choice;
     }
