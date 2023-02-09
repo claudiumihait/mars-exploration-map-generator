@@ -1,6 +1,5 @@
 package com.codecool.marsexploration.utils;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -25,5 +24,17 @@ public class Input {
             display.errorMessage("Invalid input");
         }
         return choice;
+    }
+
+    public String getUserInput(String s){
+        display.message(s);
+        Scanner scanner = new Scanner(System.in);
+
+        try{
+            return scanner.nextLine();
+        }catch (Exception e){
+            display.errorMessage("Error reading the input. Please try again.");
+            return getUserInput(s);
+        }
     }
 }
