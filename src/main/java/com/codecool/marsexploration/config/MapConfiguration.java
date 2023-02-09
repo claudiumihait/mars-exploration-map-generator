@@ -1,6 +1,8 @@
 package com.codecool.marsexploration.config;
 
+import com.codecool.marsexploration.resource.Mineral;
 import com.codecool.marsexploration.resource.Resource;
+import com.codecool.marsexploration.resource.Water;
 import com.codecool.marsexploration.shape.Mountain;
 import com.codecool.marsexploration.shape.Pit;
 import com.codecool.marsexploration.shape.Shape;
@@ -11,25 +13,13 @@ public class MapConfiguration {
 
     private final String fileName;
     private final int width;
-
-
-
-    //    private final List<List<Mountain>> mountainAreas;
-//    private final List<List<Pit>> pitAreas;
-//    private final List<Resource> waters;
-//    private final List<Resource> minerals;
     private final List<Resource> resourceList;
     private final List<Shape> shapeList;
     private final boolean isConfigValid;
-//TODO-mapConfiguration(conform JOURNEY) trebuie sa ia ca paramentru (din input) cati munti/vai/ape/minerale sa aiba
-    //TODO-Try to include these strategies into the configuration object as well.(PROCENT OCUPARE)
+
     public MapConfiguration(String fileName, int width, List<Shape> shapeList,List<Resource> resourceList) {
         this.fileName = fileName;
         this.width = width;
-//        this.mountainAreas = mountainAreas;
-//        this.pitAreas = pitAreas;
-//        this.waters = waters;
-//        this.minerals = minerals;
         this.shapeList = shapeList;
         this.resourceList = resourceList;
         this.isConfigValid = validate();
@@ -43,11 +33,6 @@ public class MapConfiguration {
         return shapeList;
     }
 
-    public boolean validate(){
-        ConfigurationValidator validator = new ConfigurationValidator(this);
-        return validator.validate();
-    }
-
     public String getFileName() {
         return fileName;
     }
@@ -56,22 +41,38 @@ public class MapConfiguration {
         return width;
     }
 
-//    public List<List<Mountain>> getMountainAreas() {
-//        return mountainAreas;
-//    }
-//
-//    public List<List<Pit>> getPitAreas() {
-//        return pitAreas;
-//    }
-//
-//    public List<Resource> getWaters() {
-//        return waters;
-//    }
-//
-//    public List<Resource> getMinerals() {
-//        return minerals;
-//    }
+    public boolean validate(){
+        ConfigurationValidator validator = new ConfigurationValidator(this);
+        return validator.validate();
+    }
 
+    public int[] getShapesCount(){
+        int[] shapesCount = new int[2];
+        int mountainsCount = 0;
+        int pitsCount = 0;
+        for (Shape shape : shapeList ){
+            if (shape instanceof Mountain) mountainsCount++;
+            if (shape instanceof Pit) pitsCount++;
+        }
+        shapesCount[0] = mountainsCount;
+        shapesCount[1] = pitsCount;
+
+        return shapesCount;
+    }
+
+    public int[] getResourcesCount(){
+        int[] resourcesCount = new int[2];
+        int watersCount = 0;
+        int mineralsCount = 0;
+        for (Resource resource : resourceList ){
+            if (resource instanceof Mineral) mineralsCount++;
+            if (resource instanceof Water) watersCount++;
+        }
+        resourcesCount[0] = mineralsCount;
+        resourcesCount[1] = watersCount;
+
+        return resourcesCount;
+    }
 
     public boolean isConfigValid() {
         return isConfigValid;
