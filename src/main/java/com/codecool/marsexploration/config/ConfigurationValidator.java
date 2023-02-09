@@ -2,10 +2,8 @@ package com.codecool.marsexploration.config;
 
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.resource.Resource;
-import com.codecool.marsexploration.shape.Mountain;
-import com.codecool.marsexploration.shape.Pit;
 import com.codecool.marsexploration.shape.Shape;
-import com.codecool.marsexploration.shape.ShapeGenerator;
+import com.codecool.marsexploration.utils.Display;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +11,14 @@ import java.util.Objects;
 
 public class ConfigurationValidator {
 
+    private final Display display;
     private final double MAX_MAP_COVERAGE_PERCENTAGE = 0.7;
     private final int MIN_WIDTH = 10;
     private final int MAX_WIDTH = 100;
     private final MapConfiguration config;
 
-    public ConfigurationValidator(MapConfiguration config) {
+    public ConfigurationValidator(MapConfiguration config, Display display) {
+        this.display = display;
         this.config = config;
     }
 
@@ -27,7 +27,11 @@ public class ConfigurationValidator {
     }
 
     private boolean checkWidth(){
-        return config.getWidth() <= MAX_WIDTH && config.getWidth() >= MIN_WIDTH;
+       if(!(config.getWidth() <= MAX_WIDTH && config.getWidth() >= MIN_WIDTH)){
+           display.errorMessage("Width must be between " + MIN_WIDTH + " and " + MAX_WIDTH);
+           return false;
+       };
+       return true;
     }
 
     private boolean checkTotalCoveredArea(){
@@ -40,13 +44,21 @@ public class ConfigurationValidator {
         double mapArea = config.getWidth() * config.getWidth();
         double maxAllowedCoveredArea = MAX_MAP_COVERAGE_PERCENTAGE * mapArea;
 
-        return totalCoveredArea <= maxAllowedCoveredArea;
+        if(!(totalCoveredArea <= maxAllowedCoveredArea)){
+            display.errorMessage("Total covered area ( " + totalCoveredArea + " ) cannot be higher than 70% of map area ( " + maxAllowedCoveredArea + " ).");
+            return false;
+        };
+        return true;
     }
 
     private boolean checkFileName(){
         String fileName = config.getFileName();
         String allowedFileNameChars = "[a-zA-Z0-9._-]+";
-        return fileName.matches(allowedFileNameChars);
+        if(!fileName.matches(allowedFileNameChars)){
+            display.errorMessage("Invalid file name for file: " + config.getFileName());
+            return false;
+        }
+        return true;
     }
 
     private boolean checkShapesCoordinatesNotOverlapping(){
