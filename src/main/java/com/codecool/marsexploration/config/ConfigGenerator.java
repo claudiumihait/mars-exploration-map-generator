@@ -27,7 +27,7 @@ public class ConfigGenerator {
 
     public void init() {
         this.fileName = input.getUserInput("Enter file name: ");
-        this.width = input.getNumericUserInput("Enter map size: ");
+        this.width = input.getNumericUserInput("Enter map width: ");
 
         int numberOfMountainAreas = input.getNumericUserInput("Enter number of mountain areas: ");
         for (int i = 0; i < numberOfMountainAreas; i++) {
