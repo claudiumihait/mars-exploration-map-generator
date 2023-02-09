@@ -8,7 +8,6 @@ import com.codecool.marsexploration.resource.ResourcePlacer;
 import com.codecool.marsexploration.resource.Water;
 import com.codecool.marsexploration.shape.*;
 import com.codecool.marsexploration.utils.FileSaver;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class Application {
         MapGenerator mapGenerator = new MapGenerator(mapConfiguration, new FileSaver());
         mapGenerator.generate();
 
-
         //COD DE PROBA
+
     }
 }
