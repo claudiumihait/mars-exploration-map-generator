@@ -48,7 +48,7 @@ public class Display {
 
     private void displayFileName(MapConfiguration config){
         message(ANSI_GREEN + "File name: " + ANSI_DEFAULT);
-        message(ANSI_RED + config.getFileName() + ANSI_DEFAULT);
+        message(ANSI_RED + config.getFileName() + ANSI_DEFAULT + ANSI_RED + ".txt" + ANSI_DEFAULT );
     }
 
     private void displayMapWidth(MapConfiguration config){
