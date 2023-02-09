@@ -17,8 +17,6 @@ public class ShapePlacer {
         int offsetY = rand.nextInt(map.length - shape.getMaxY());
         int retries = 0;
         while(offsetX + shape.getMaxX() > map.length || offsetY + shape.getMaxY() > map.length || shape.isAdjacentToExistingShape(map, offsetX, offsetY)){
-            rand = new Random();
-            display.displayMap(map);
             retries++;
             if(retries == 5){
                 if (shape instanceof Mountain){
@@ -37,7 +35,7 @@ public class ShapePlacer {
         for(int i = 0; i < coordinates.size(); i ++){
             Coordinate c = coordinates.get(i);
             Coordinate newC = new Coordinate(c.x() + offsetX, c.y() + offsetY);
-            coordinates.set(i, newC);
+            //coordinates.set(i, newC);
             map[newC.x()][newC.y()] = shape.getSymbol();
         }
     }

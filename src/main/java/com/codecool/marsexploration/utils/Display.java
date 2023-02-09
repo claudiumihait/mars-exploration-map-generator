@@ -107,14 +107,4 @@ public class Display {
         System.out.println();
         displayMap(map);
     }
-
-    public void shapes(List<Shape> shapes) {
-        for(Shape shape : shapes){
-            message("-------------------------");
-            List<Coordinate> coordinates = shape.getCoordinates();
-            for(Coordinate c : coordinates)
-                System.out.println(c);
-
-        }
-    }
 }

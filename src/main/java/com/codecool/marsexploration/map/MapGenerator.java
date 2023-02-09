@@ -25,7 +25,6 @@ public class MapGenerator {
             ShapePlacer shapePlacer = new ShapePlacer();
             ResourcePlacer resourcePlacer = new ResourcePlacer();
             while(numberOfRandomMaps > 0){
-                display.shapes(config.getShapes());
                 shapePlacer.placeShapes(config.getShapes(), map);
                 resourcePlacer.placeResources(config.getResources(), map);
                 display.displayGenerated(config, map);
