@@ -5,7 +5,7 @@ import com.codecool.marsexploration.data.Coordinate;
 public abstract class Resource {
 
     protected char symbol;
-    private char preference;
+    private final char preference;
     protected Coordinate location;
 
     public char getPreference() {
