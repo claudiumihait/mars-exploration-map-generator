@@ -2,6 +2,9 @@
 
 # Mars Exploration - Map Generator #
 
+This repository is Part 1 of the Mars Exploration application. The second part, which is the Simulator application, can be found [here.](https://github.com/claudiumihait/mars-exploration-simulator)
+
+
 ### Description ###
 
 _Note: This application was created as a learning project to practice Java development skills and is not intended for actual commercial use._
