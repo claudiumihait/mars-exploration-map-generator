@@ -18,7 +18,7 @@ public class ShapePlacer {
         int retries = 0;
         while(offsetX + shape.getMaxX() > map.length || offsetY + shape.getMaxY() > map.length || shape.isAdjacentToExistingShape(map, offsetX, offsetY)){
             retries++;
-            if(retries == 5){
+            if(retries == 10000){
                 if (shape instanceof Mountain){
                     display.errorMessage("Failed to place mountain area number -" + areasIndexes[0] + "- of size -" + shape.getCoordinates().size() + "- after 10000 attempts. Maximum number of retries reached.");
                     System.exit(0);
