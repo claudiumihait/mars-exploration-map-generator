@@ -4,9 +4,9 @@ import com.codecool.marsexploration.data.Coordinate;
 
 import java.util.List;
 
-public class Mountain extends Shape{
+public class Mountain extends Shape {
 
-    public Mountain(List<Coordinate> coordinates) {
-        super(coordinates, '^');
-    }
+	public Mountain(List<Coordinate> coordinates) {
+		super(coordinates, '^');
+	}
 }

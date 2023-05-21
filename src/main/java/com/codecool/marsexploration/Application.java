@@ -8,14 +8,14 @@ import com.codecool.marsexploration.utils.FileSaver;
 import com.codecool.marsexploration.utils.Input;
 
 public class Application {
-    public static void main(String[] args) {
-        Display display = new Display();
-        Input input = new Input(display);
-        FileSaver writer = new FileSaver();
-        ConfigGenerator configGenerator = new ConfigGenerator(input);
-        configGenerator.init();
-        MapConfiguration config = new MapConfiguration(configGenerator.getFileName(), configGenerator.getWidth(), configGenerator.getShapeList(),configGenerator.getResourceList(), configGenerator.getNumberOfRandomMaps());
-        MapGenerator generator = new MapGenerator(config, writer);
-        generator.generate();
-    }
+	public static void main(String[] args) {
+		Display display = new Display();
+		Input input = new Input(display);
+		FileSaver writer = new FileSaver();
+		ConfigGenerator configGenerator = new ConfigGenerator(input);
+		configGenerator.init();
+		MapConfiguration config = new MapConfiguration(configGenerator.getFileName(), configGenerator.getWidth(), configGenerator.getShapeList(), configGenerator.getResourceList(), configGenerator.getNumberOfRandomMaps());
+		MapGenerator generator = new MapGenerator(config, writer);
+		generator.generate();
+	}
 }
