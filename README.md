@@ -20,9 +20,11 @@ To facilitate customization, the app employs a configuration object where users 
 4. Build the project using the following command to package it into a JAR file:
 
 ```mvn package```
+
 5. After the build is successful, navigate to the `\target` folder in your project directory:
 
 ```cd target```
+
 6. Run the application using the `java -jar` command followed by the name of the JAR file. 
 
 ```java -jar mars-exploration-1-1.0-SNAPSHOT.jar```
